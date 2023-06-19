@@ -1,0 +1,82 @@
+<div class="page-wrapper" tabindex="-1" role="main">
+    {% if page.cover %}
+        <img src="{{ page.cover }}"
+             width="100%"
+             height="{{ page.cover_height | default: '100%' }}"
+             alt="{{ page.title | escape }}"
+             style="object-fit: cover;"
+        />
+    {% endif %}
+
+    <div class="page-inner">
+        <div id="book-search-results">
+            <div class="search-noresults">
+                <section class="normal markdown-section">
+					{% assign pattern = '^/page[0-9]+$/' %}
+                    {% if page.url == "/index.html" or page.url == "/" %}
+					{% elsif page.url | match: pattern %}
+                    {% else %}
+                        {% if page.title %}
+                            <h1 id="{{ page.id }}">{{ page.title | escape }}</h1>
+                        {% else %}
+                            <h1 id="{{ page.id }}">{{ site.title | escape }}</h1>
+                        {% endif %}
+                    {% endif %}
+
+                    <!--非首页/关于/归档/标签页面去掉其编者信息框-->
+                    
+                    {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/"%}
+                    {% elsif page.url | match: pattern %}
+                    {% else %}
+                    <!--这是一个分隔横线-->
+                    <div class="separator"></div>
+
+                    <div class="vdadh-editor">
+                        <div class="ifomo">
+                        written by {{ "vdadh" }}
+                        <!-- 显示作者 -->
+                        </div>
+
+                        <div class="vdadh-meta">
+                            <span class="date">
+                            {{ page.date | date: "%Y-%m-%d" }}
+                            </span>
+
+                            <ul class="tag">
+                                {% for tag in page.tags %}
+                                <li>
+                                    <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
+                                        {{ tag }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!--md文件解析内容就会放在-->
+                    {{ content }}
+
+                    {%- if jekyll.environment != 'dev' and site.disqushandler -%}
+                        {%- include disqus.html -%}
+                    {%- endif -%}
+
+                    <!--@vdadh-->
+                    <!--非首页/关于/归档/标签页面去掉其评论框-->
+                    {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/"%}
+                    {% elsif page.url | match: pattern %}
+                    {% else %}
+                        {% include disqus.html %}
+                        {% include gitalk.html %}
+                    {% endif %}
+                    <!--@vdadh-->
+                </section>
+            </div>
+
+            {%- include search.html -%}
+        </div>
+    </div>
+</div>
+
+{% include mathjax.html %}

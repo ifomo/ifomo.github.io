@@ -1,0 +1,59 @@
+<!--侧边栏页面布局文件-->
+<div class="book-summary">
+    <nav role="navigation">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="Type to search" />
+        </div>
+        <div id="book-search-input-link" role="search">
+            <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
+        </div>
+        <ul class="summary">
+            <!--以下我想调整为"首页", 它会解析库下的README.md并转换为页面-->
+			{% if page.url == "/index.html" or page.url == "/" %}
+            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">
+            {% else %}
+            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">
+            {% endif %}
+                <a href="/">首页</a>
+            </li>
+            <!--这是一个分隔横线-->
+            <li class="divider"></li>
+
+            {% for collection in site.collections %}
+                <!-- <p>{{ collection.label }}</p> -->
+                {% if collection.output %}
+                    {% if collection.label == "posts" %}
+                        {% assign reversed_posts = site[collection.label] | reverse %}
+                    {% else %}
+                        {% assign reversed_posts = site[collection.label] %}
+                    {% endif %}
+
+                    {% for post in reversed_posts %}
+                        {% if page.url == post.url %}<!--如果当前网页url确实为post.url, 表明点击了它-->
+                        <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">
+                        {% else %}
+                        <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">
+                        {% endif %}
+                            <a href="{{site.baseurl}}{{post.url}}">
+                                {{ post.title | escape }}
+                            </a>
+                            <!--非首页/关于/归档/标签页面去掉其大纲列表-->
+                            {% if page.url == "/index.html" or page.url == "/" or page.url == "/about/" or page.url == "/archive/" or page.url == "/tags/"%}
+                            {% else %}
+                                {% if site.toc.enabled %}
+                                    {% if page.url == post.url %}
+                                        {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+
+                    {% if reversed_posts.size > 0 %}
+                        <li class="divider"></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
