@@ -95,8 +95,11 @@ table{
 
 /*@vdadh: 首页上下页按钮=================*/
 .pagination {
-    display: flex;
-    justify-content: space-between;
+    border-top: 1px solid #f1f3f5;
+    font-weight: 300;
+    padding: 20px 0;
+    width: 100%;
+    display: inline-block;
 }
 .pagination > .prev {
     float: left;

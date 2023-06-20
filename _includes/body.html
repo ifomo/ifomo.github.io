@@ -12,7 +12,6 @@
         <div id="book-search-results">
             <div class="search-noresults">
                 <section class="normal markdown-section">
-                    <!-- {% elsif page.url | match: pattern %} -->					
                     {% assign pattern = '^/page[0-9]+$/' %}
                     {% if page.url == "/index.html" or page.url == "/" or page.url contains '/page' %}
                     {% else %}
