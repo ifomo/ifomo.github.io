@@ -95,7 +95,7 @@ table{
 
 /*@vdadh: 首页上下页按钮=================*/
 .pagination {
-    border-top: 1px solid #f1f3f5;
+    border-top: 2px solid #f1f3f5;
     font-weight: 300;
     padding: 20px 0;
     width: 100%;
@@ -120,7 +120,7 @@ table{
 
 /*@vdadh: 文档页编者信息=================*/
 .separator {
-  border-bottom: 1px solid #999999;
+  border-bottom: 2px solid #f1f3f5;
 }
 .vdadh-editor .ifomo{
     font-size: 12px;
