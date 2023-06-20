@@ -26,6 +26,7 @@
                     <!--非首页/关于/归档/标签页面去掉其编者信息框-->
                     
                     {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/"%}
+                    <p>我尼玛</p>
                     {% elsif page.url | match: pattern %}
                     {% else %}
                     <!--这是一个分隔横线-->
