@@ -12,9 +12,9 @@
         <div id="book-search-results">
             <div class="search-noresults">
                 <section class="normal markdown-section">
+                    <!-- {% elsif page.url | match: pattern %} -->					
                     {% assign pattern = '^/page[0-9]+$/' %}
-                    {% if page.url == "/index.html" or page.url == "/" or page.url contains '/page'%}
-                    <!-- {% elsif page.url | match: pattern %} -->
+                    {% if page.url == "/index.html" or page.url == "/" or page.url contains '/page' %}
                     {% else %}
                         {% if page.title %}
                             <h1 id="{{ page.id }}">{{ page.title | escape }}</h1>
@@ -25,12 +25,8 @@
 
                     <!--非首页/关于/归档/标签页面去掉其编者信息框-->
                     
-                    {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/"%}
-                    <p>我尼玛</p>
-                    {% elsif page.url | match: pattern %}
-                    <p>妈卖批</p>
+                    {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/" or page.url contains '/page' %}
                     {% else %}
-                    <p>爱个麻花情</p>
                     <!--这是一个分隔横线-->
                     <div class="separator"></div>
 
@@ -67,8 +63,7 @@
 
                     <!--@vdadh-->
                     <!--非首页/关于/归档/标签页面去掉其评论框-->
-                    {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/"%}
-                    {% elsif page.url | match: pattern %}
+                    {% if page.url=="/index.html" or page.url=="/" or page.url=="/about/" or page.url=="/archive/" or page.url=="/tags/" or page.url contains '/page' %}
                     {% else %}
                         {% include disqus.html %}
                         {% include gitalk.html %}
