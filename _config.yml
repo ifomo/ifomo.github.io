@@ -23,8 +23,8 @@ toc:
 # customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
 # favicon_path:     /assets/gitbook/images/favicon.ico
 # 你的favicon（出现在浏览器tab上）图片URL，建议使用较小(64px × 64px)的图片
-# favicon: https://vdadh-picture-bed.oss-cn-hangzhou.aliyuncs.com/img/202306042108061.png?v=2
-favicon_path:    /assets/gitbook/images/202306042108061.png
+favicon: https://vdadh-picture-bed.oss-cn-hangzhou.aliyuncs.com/img/202306042108061.png?v=2
+# favicon_path:    /assets/gitbook/images/202306042108061.png
 
 # markdown render engine.
 markdown:         kramdown

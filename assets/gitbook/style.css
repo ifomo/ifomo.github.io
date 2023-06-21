@@ -121,6 +121,10 @@ table{
 /*@vdadh: 文档页编者信息=================*/
 .separator {
   border-bottom: 2px solid #f1f3f5;
+  margin-bottom: 10px;
+}
+.vdadh-editor {
+    margin-bottom: 10px;
 }
 .vdadh-editor .ifomo{
     font-size: 12px;
