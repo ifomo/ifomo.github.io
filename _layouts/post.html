@@ -36,7 +36,21 @@
                 </div>
 
                 <div class="body-inner">
-                    {%- include body.html -%}
+					
+					{% if page.access == 'password' %}
+					    {% if page.password_entered %}
+					        {%- include body.html -%}
+					    {% else %}
+					    <form method="post" action="{{ page.url }}">
+					        <input type="password" name="password" placeholder="Enter the password">
+					        <button type="submit">Submit</button>
+					    </form>
+					    {% endif %}
+					{% else %}
+					    {%- include body.html -%}
+					{% endif %}
+					
+                    <!-- {%- include body.html -%} -->
 					
                     <!--首页无左箭头-->
                     {% if page.url == "/index.html" or page.url == "/" %}

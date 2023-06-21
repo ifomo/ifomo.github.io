@@ -283,7 +283,7 @@ ol > li, ul > li {
 /*@vdadh: 标签下页面样式=====================*/
 
 /*@vdadh: 首页上下页按钮样式=====================*/
-.btn {
+.pagination .btn {
     display: inline-block;
     border-radius: 2px;
     line-height: normal;
@@ -312,7 +312,7 @@ ol > li, ul > li {
     -moz-transition: all .1s linear;
     transition: all .1s linear;
 }
-.btn-neutral {
+.pagination .btn-neutral {
     background-color: #f3f6f6!important;
     color: #404040!important;
 }

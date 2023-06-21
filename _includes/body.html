@@ -53,21 +53,8 @@
                     </div>
                     {% endif %}
 
-                    <!--md文件解析内容就会放在，添加了私密访问功能-->
-                    {% if page.access == 'password' %}
-                        {% if page.password_entered %}
-                            {{ content }}
-                        {% else %}
-                        <form method="post" action="{{ page.url }}">
-                            <input type="password" name="password" placeholder="Enter the password">
-                            <button type="submit">Submit</button>
-                        </form>
-                        {% endif %}
-                    {% else %}
-                        {{ content }}
-                    {% endif %}
- 
-                    <!-- {{ content }} -->
+                    <!--md文件解析内容就会放在这里-->
+                    {{ content }}
 
                     {%- if jekyll.environment != 'dev' and site.disqushandler -%}
                         {%- include disqus.html -%}
