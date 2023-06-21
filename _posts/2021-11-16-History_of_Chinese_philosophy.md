@@ -3,7 +3,7 @@ layout: post
 title: "杨立华-中国哲学史"
 date: 2021-11-16
 tags: ["边缘白领"]
-toc: true
+toc: false
 comments: true
 author: vdadh
 excerpt: "认识Lz那会，晚上没事就看北大教授讲南北朝的哲学课，好跟她装b"
