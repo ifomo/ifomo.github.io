@@ -3,7 +3,7 @@ layout: post
 title: "爱的艺术"
 date: 2022-01-20
 tags: ["边缘白领"]
-toc: false
+toc: true
 comments: true
 author: vdadh
 excerpt: "《爱的艺术》摘录"
