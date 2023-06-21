@@ -77,25 +77,3 @@
 </div>
 
 {% include mathjax.html %}
-
-<!--私密文章访问权限获取js-->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  var passwordForm = document.querySelector("form");
-  if (passwordForm) {
-    passwordForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      var passwordInput = passwordForm.querySelector("input[name='password']");
-      var enteredPassword = passwordInput.value.trim();
-      var correctPassword = "{{ site.password }}";
-      if (enteredPassword === correctPassword) {
-        localStorage.setItem("password_entered", true);
-        window.location.reload();
-      } else {
-        alert("Incorrect password! Please try again.");
-        passwordInput.value = "";
-      }
-    });
-  }
-});
-</script>

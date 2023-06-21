@@ -1,6 +1,15 @@
 <!DOCTYPE HTML>
 <html lang="en" >
     <head>
+		{% if page.access == 'password' and page.password_entered != true %}
+		  {% assign enteredPassword = page.input_password | default: "" %}
+		  {% if enteredPassword == site.password %}
+		    {% assign page.password_entered = true %}
+		    <script>
+		    localStorage.setItem("password_entered", true);
+		    </script>
+		  {% endif %}
+		{% endif %}
 
         {%- include head.html -%}
 
@@ -99,4 +108,26 @@
         {%- include footer.html -%}
 
     </body>
+	
+	<!--私密文章访问权限获取js-->
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	  var passwordForm = document.querySelector("form");
+	  if (passwordForm) {
+	    passwordForm.addEventListener("submit", function(e) {
+	      e.preventDefault();
+	      var passwordInput = passwordForm.querySelector("input[name='password']");
+	      var enteredPassword = passwordInput.value.trim();
+	      var correctPassword = "{{ site.password }}";
+	      if (enteredPassword === correctPassword) {
+	        localStorage.setItem("password_entered", true);
+	        window.location.reload();
+	      } else {
+	        alert("Incorrect password! Please try again.");
+	        passwordInput.value = "";
+	      }
+	    });
+	  }
+	});
+	</script>
 </html>
