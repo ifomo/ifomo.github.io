@@ -63,19 +63,6 @@ incremental:      false
 regenerate:       true
 
 ################################################
-# Tabs in header. There are 'Blog', 'About', 'Archive', 'Tags'
-# and URL Link(e.g. 'Theme' tab below) tabs. If you don't need one, just delete
-# it from the list(Delete '- name: ' and 'url: ', too!)
-# navigation:
-#   - name: 首页
-#     url: /
-#   - name: 归档
-#     url: /archive
-#   - name: 标签
-#     url: /tags
-#   - name: 关于
-#     url: /about
-
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: G-RJEHFFJ5V9
 
@@ -92,6 +79,9 @@ paginate: 8
 # 开启大纲列表？
 # toc:
 #     enabled: true
+
+#文章私密访问
+password: xzm1024
 ################################################
 
 plugins:
