@@ -90,8 +90,8 @@ gitalk:
 paginate: 8
 
 # 开启大纲列表？
-toc:
-    enabled: true
+# toc:
+#     enabled: true
 ################################################
 
 plugins:
