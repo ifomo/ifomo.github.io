@@ -312,6 +312,9 @@ ol > li, ul > li {
     -moz-transition: all .1s linear;
     transition: all .1s linear;
 }
+.pagination .btn:hover {
+    background-color: #e8f7ff;
+}
 .pagination .btn-neutral {
     background-color: #f3f6f6!important;
     color: #404040!important;
