@@ -9,6 +9,17 @@
         {% if reversed_posts %}
             <link rel="next" href="{{site.baseurl}}{{reversed_posts.first.url}}" />
         {% endif %}
+
+        <!--私密功能-->
+        {% if page.access == 'password' and page.password_entered != true %}
+          {% assign enteredPassword = page.input_password | default: "" %}
+          {% if enteredPassword == site.password %}
+            {% assign page.password_entered = true %}
+            <script>
+            localStorage.setItem("password_entered", true);
+            </script>
+          {% endif %}
+        {% endif %}
     </head>
     <body>
         <div class="book">
@@ -39,8 +50,22 @@
 				{% else %} -->
                 <!--@vdadh-->
 
+                    <!--私密功能-->
                     <div class="body-inner">
-                        {%- include body.html -%}
+                        {% if page.access == 'password' %}
+                          {% if page.password_entered %}
+                            {%- include body.html -%}
+                          {% else %}
+                            <form method="post" action="{{ page.url }}">
+                              <input type="password" name="password" placeholder="Enter the password">
+                              <button type="submit">Submit</button>
+                            </form>
+                          {% endif %}
+                        {% else %}
+                          {%- include body.html -%}
+                        {% endif %}
+
+                        <!-- {%- include body.html -%} -->
 
                         {% if reversed_posts %}
                             <a href="{{site.baseurl}}{{reversed_posts.first.url}}" class="navigation navigation-next navigation-unique" aria-label="Next page: {{reversed_posts.first.title}}">
@@ -61,5 +86,26 @@
 
         {%- include footer.html -%}
 
+        <!--私密功能-->
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var passwordForm = document.querySelector("form");
+          if (passwordForm) {
+            passwordForm.addEventListener("submit", function(e) {
+              e.preventDefault();
+              var passwordInput = passwordForm.querySelector("input[name='password']");
+              var enteredPassword = passwordInput.value.trim();
+              var correctPassword = "{{ site.password }}";
+              if (enteredPassword === correctPassword) {
+                localStorage.setItem("password_entered", true);
+                window.location.reload();
+              } else {
+                alert("Incorrect password! Please try again.");
+                passwordInput.value = "";
+              }
+            });
+          }
+        });
+        </script>
     </body>
 </html>
