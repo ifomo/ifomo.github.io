@@ -15,17 +15,6 @@
         <!--@vdadh引入Gitalk的css和JavaScript文件-->
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css">
         <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-        <!--私密功能-->
-        {% if page.access == 'password' and page.password_entered != true %}
-          {% assign enteredPassword = page.input_password | default: "" %}
-          {% if enteredPassword == site.password %}
-            {% assign page.password_entered = true %}
-            <script>
-            localStorage.setItem("password_entered", true);
-            </script>
-          {% endif %}
-        {% endif %}
     </head>
     <body>
         <div class="book">
@@ -46,21 +35,7 @@
                 </div>
 
                 <div class="body-inner">
-                    <!--私密功能-->
-                    {% if page.access == 'password' %}
-                      {% if page.password_entered %}
-                        {%- include body.html -%}
-                      {% else %}
-                        <form method="post" action="{{ page.url }}">
-                          <input type="password" name="password" placeholder="Enter the password">
-                          <button type="submit">Submit</button>
-                        </form>
-                      {% endif %}
-                    {% else %}
-                      {%- include body.html -%}
-                    {% endif %}
-
-                    <!-- {%- include body.html -%} -->
+                    {%- include body.html -%}
 
                     <!--首页无左箭头-->
                     {% if page.url == "/index.html" or page.url == "/" %}
@@ -110,26 +85,4 @@
 
     </body>
     </script>
-
-        <!--私密功能-->
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          var passwordForm = document.querySelector("form");
-          if (passwordForm) {
-            passwordForm.addEventListener("submit", function(e) {
-              e.preventDefault();
-              var passwordInput = passwordForm.querySelector("input[name='password']");
-              var enteredPassword = passwordInput.value.trim();
-              var correctPassword = "{{ site.password }}";
-              if (enteredPassword === correctPassword) {
-                localStorage.setItem("password_entered", true);
-                window.location.reload();
-              } else {
-                alert("Incorrect password! Please try again.");
-                passwordInput.value = "";
-              }
-            });
-          }
-        });
-        </script>
 </html>
